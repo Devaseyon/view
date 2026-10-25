@@ -374,6 +374,44 @@ const initialPage = location.hash.slice(1);
 if (document.getElementById(initialPage)?.classList.contains("page")) {
   showPage(initialPage);
 }
-</script>
+</script><section id="videos" style="padding:30px;text-align:center;">
+  <h2>🎬 Devaseyon's Family Videos ❤️</h2>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;">
+
+    <div>
+      <video controls preload="metadata" style="width:100%;border-radius:12px;">
+        <source src="devasev.mp4" type="video/mp4">
+      </video>
+      <p>Devaseyon's Memories</p>
+      <a href="devasev.mp4" download>Download Video</a>
+    </div>
+
+    <div>
+      <video controls preload="metadata" style="width:100%;border-radius:12px;">
+        <source src="enjoying.mp4" type="video/mp4">
+      </video>
+      <p>Enjoying Moments</p>
+      <a href="enjoying.mp4" download>Download Video</a>
+    </div>
+
+    <div>
+      <video controls preload="metadata" style="width:100%;border-radius:12px;">
+        <source src="with papa.mp4" type="video/mp4">
+            </video>
+            <p>With Appa ❤️</p>
+            <a href="with%20papa.mp4" download>Download Video</a>
+          </div>
+
+    <div>
+      <video controls preload="metadata" style="width:100%;border-radius:12px;">
+        <source src="seyon with fam.mp4" type="video/mp4">
+      </video>
+      <p>Seyon with Family ❤️</p>
+      <a href="seyon%20with%20fam.mp4" download>Download Video</a>
+    </div>
+
+  </div>
+</section>
 </body>
 </html>
