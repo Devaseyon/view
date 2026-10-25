@@ -3,820 +3,175 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Devaseyon ❤️ | My Little World</title>
+<title>Devaseyon | Little Memories</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#faf8f5;
+  color:#302b32;
 }
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #fafafa;
-    color: #262626;
+header{
+  position:sticky;
+  top:0;
+  background:rgba(255,255,255,.94);
+  border-bottom:1px solid #eee5e5;
+  padding:17px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:5;
 }
-
-button {
-    cursor: pointer;
-    font: inherit;
-    border: none;
+.logo{
+  font-size:25px;
+  font-weight:bold;
+  color:#c04476;
+  letter-spacing:-1px;
 }
-
-.layout {
-    display: flex;
-    min-height: 100vh;
+nav a{
+  text-decoration:none;
+  color:#54464e;
+  margin-left:22px;
+  font-size:14px;
 }
-
-/* LEFT NAVIGATION */
-
-.sidebar {
-    width: 230px;
-    background: white;
-    border-right: 1px solid #eee;
-    padding: 25px 15px;
-    position: fixed;
-    height: 100vh;
+nav a:hover{color:#d13d80}
+main{max-width:1000px;margin:45px auto;padding:0 22px}
+.profile{
+  display:flex;
+  gap:55px;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  padding:20px 0 38px;
 }
-
-.logo {
-    font-size: 27px;
-    font-weight: bold;
-    font-style: italic;
-    margin: 5px 10px 40px;
-    color: #d63384;
+.avatar-border{
+  width:190px;height:190px;border-radius:50%;
+  padding:5px;
+  background:linear-gradient(135deg,#f9ce34,#ee2a7b,#6228d7);
+  box-shadow:0 8px 28px #c0447620;
 }
-
-.nav-item {
-    display: block;
-    width: 100%;
-    text-align: left;
-    background: transparent;
-    padding: 14px 12px;
-    margin-bottom: 8px;
-    border-radius: 10px;
-    font-size: 16px;
+.avatar{
+  width:100%;height:100%;border-radius:50%;
+  object-fit:cover;border:4px solid #fff;
+  display:block;background:#f2e8ed;
 }
-
-.nav-item:hover,
-.nav-item.active {
-    background: #fff0f5;
-    color: #d63384;
+.bio{max-width:440px}
+.bio h1{font-size:30px;margin:0 0 12px}
+.tagline{color:#bd477b;font-weight:bold;font-size:16px}
+.bio p{line-height:1.8;color:#6f6269;margin:10px 0}
+.badge{
+  display:inline-block;
+  padding:8px 13px;
+  background:#fff0f5;
+  border-radius:20px;
+  color:#b13c71;
+  font-size:13px;
+  margin-top:8px;
 }
-
-/* MAIN CONTENT */
-
-main {
-    margin-left: 230px;
-    width: calc(100% - 230px);
+.section-title{
+  text-align:center;
+  margin:25px 0;
+  font-size:19px;
+  letter-spacing:2px;
 }
-
-.topbar {
-    height: 65px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 30px;
-    background: white;
-    border-bottom: 1px solid #eee;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+.section-title span{color:#bd477b}
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
 }
-
-.search-box {
-    padding: 12px 18px;
-    width: 40%;
-    border: none;
-    border-radius: 25px;
-    background: #f3f3f3;
-    outline: none;
+.photo-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:15px;
+  aspect-ratio:1/1;
+  background:#eee5e8;
+  box-shadow:0 5px 18px #5d344010;
 }
-
-.top-icons {
-    display: flex;
-    gap: 22px;
-    align-items: center;
-    font-size: 23px;
+.photo-card img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .4s;
 }
-
-/* PROFILE */
-
-.container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 35px 25px;
+.photo-card:hover img{transform:scale(1.06)}
+footer{
+  text-align:center;padding:35px 15px;
+  color:#9a858e;font-size:13px;
 }
-
-.profile {
-    display: flex;
-    gap: 60px;
-    align-items: center;
-    margin-bottom: 35px;
-}
-
-.profile-image {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    padding: 5px;
-    background: linear-gradient(45deg, orange, #ff1493, purple);
-    flex-shrink: 0;
-}
-
-.profile-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid white;
-}
-
-.profile-details {
-    flex: 1;
-}
-
-.profile-heading {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 22px;
-}
-
-.profile-heading h1 {
-    font-size: 28px;
-}
-
-.follow-btn {
-    background: #3797f0;
-    color: white;
-    padding: 10px 24px;
-    border-radius: 8px;
-    font-weight: bold;
-}
-
-.message-btn {
-    padding: 10px 20px;
-    border-radius: 8px;
-    background: #eee;
-    font-weight: bold;
-}
-
-.stats {
-    display: flex;
-    gap: 30px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-}
-
-.bio {
-    line-height: 1.8;
-    color: #454545;
-}
-
-.bio strong {
-    color: #222;
-}
-
-/* STORY HIGHLIGHTS */
-
-.stories {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    overflow-x: auto;
-    padding: 15px 0 30px;
-    margin-bottom: 20px;
-}
-
-.story {
-    min-width: 85px;
-    text-align: center;
-    cursor: pointer;
-}
-
-.story img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    padding: 3px;
-    border-radius: 50%;
-    border: 3px solid #f078bd;
-    background: white;
-}
-
-.story p {
-    margin-top: 8px;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-/* PROFILE TABS */
-
-.tabs {
-    display: flex;
-    justify-content: center;
-    gap: 60px;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 20px;
-}
-
-.tab {
-    background: transparent;
-    padding: 18px 8px;
-    font-weight: bold;
-    color: #777;
-}
-
-.tab.active {
-    color: #222;
-    border-bottom: 2px solid #222;
-}
-
-/* PHOTO GALLERY */
-
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
-}
-
-.post {
-    background: white;
-    border: 1px solid #eee;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 3px 12px #00000008;
-}
-
-.post-image {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    display: block;
-}
-
-.post-info {
-    padding: 12px;
-}
-
-.post-actions {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 10px;
-}
-
-.icon-button {
-    background: transparent;
-    font-size: 23px;
-}
-
-.like-button.liked {
-    color: #ed4956;
-}
-
-.likes {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-.caption {
-    font-size: 14px;
-    color: #444;
-    line-height: 1.5;
-}
-
-.hidden {
-    display: none !important;
-}
-
-footer {
-    text-align: center;
-    padding: 35px 10px;
-    color: #888;
-    font-size: 13px;
-}
-
-/* MOBILE RESPONSIVE */
-
-@media (max-width: 900px) {
-    .sidebar {
-        width: 75px;
-        padding: 20px 8px;
-    }
-
-    .logo {
-        font-size: 20px;
-        margin: 5px 0 35px;
-        text-align: center;
-    }
-
-    .nav-item {
-        text-align: center;
-        font-size: 22px;
-        padding: 14px 5px;
-    }
-
-    .nav-label {
-        display: none;
-    }
-
-    main {
-        margin-left: 75px;
-        width: calc(100% - 75px);
-    }
-
-    .profile {
-        gap: 25px;
-    }
-
-    .profile-image {
-        width: 150px;
-        height: 150px;
-    }
-
-    .profile-heading h1 {
-        font-size: 23px;
-    }
-
-    .stats {
-        gap: 15px;
-    }
-}
-
-@media (max-width: 600px) {
-    .topbar {
-        padding: 0 12px;
-        height: 55px;
-    }
-
-    .search-box {
-        width: 65%;
-    }
-
-    .top-icons {
-        display: none;
-    }
-
-    .container {
-        padding: 22px 12px;
-    }
-
-    .profile {
-        gap: 15px;
-        align-items: flex-start;
-    }
-
-    .profile-image {
-        width: 95px;
-        height: 95px;
-    }
-
-    .profile-heading {
-        gap: 8px;
-        margin-bottom: 12px;
-    }
-
-    .profile-heading h1 {
-        font-size: 20px;
-    }
-
-    .follow-btn,
-    .message-btn {
-        padding: 8px 12px;
-        font-size: 12px;
-    }
-
-    .stats {
-        gap: 10px;
-        font-size: 12px;
-        margin-bottom: 12px;
-    }
-
-    .bio {
-        font-size: 12px;
-        line-height: 1.6;
-    }
-
-    .stories {
-        gap: 15px;
-    }
-
-    .story img {
-        width: 65px;
-        height: 65px;
-    }
-
-    .story {
-        min-width: 65px;
-    }
-
-    .tabs {
-        gap: 25px;
-    }
-
-    .tab {
-        font-size: 12px;
-    }
-
-    .gallery {
-        gap: 5px;
-    }
-
-    .post-info {
-        padding: 7px;
-    }
-
-    .post-actions {
-        gap: 8px;
-    }
-
-    .icon-button {
-        font-size: 18px;
-    }
-
-    .caption,
-    .likes {
-        font-size: 11px;
-    }
+@media(max-width:600px){
+  header{padding:15px;flex-wrap:wrap;gap:12px}
+  .logo{font-size:22px}
+  nav a{margin-left:12px;font-size:13px}
+  main{margin:25px auto;padding:0 12px}
+  .profile{gap:22px;text-align:center}
+  .avatar-border{width:145px;height:145px}
+  .bio h1{font-size:25px}
+  .gallery{gap:6px}
+  .photo-card{border-radius:8px}
 }
 </style>
 </head>
 
 <body>
-
-<div class="layout">
-
-    <!-- LEFT SIDEBAR -->
-    <aside class="sidebar">
-        <div class="logo">Devaseyon ❤️</div>
-
-        <button class="nav-item active">🏠
-            <span class="nav-label"> Home</span>
-        </button>
-
-        <button class="nav-item">🔎
-            <span class="nav-label"> Search</span>
-        </button>
-
-        <button class="nav-item">🖼️
-    <span class="nav-label"> Photos</span>
-</button>
-
-        <button class="nav-item">🎬
-            <span class="nav-label"> Reels</span>
-        </button>
-
-        <button class="nav-item">✉️
-            <span class="nav-label"> Messages</span>
-        </button>
-
-       <button class="nav-item">➕
-    <span class="nav-label"> Create</span>
-</button>
-
-        <button class="nav-item">➕
-            <span class="nav-label"> Create</span>
-        </button>
-
-        <button class="nav-item">👤
-            <span class="nav-label"> Profile</span>
-        </button>
-    </aside>
-
-    <!-- MAIN PAGE -->
-    <main>
-
-        <header class="topbar">
-            <input
-                type="search"
-                id="searchInput"
-                class="search-box"
-                placeholder="🔎 Search posts..."
-                aria-label="Search posts"
-            >
-
-            <div class="top-icons">
-                <span>⌂</span>
-                <span>✉</span>
-                <span>＋</span>
-                <span>♡</span>
-            </div>
-        </header>
-
-        <div class="container">
-
-            <!-- PROFILE DETAILS -->
-            <section class="profile">
-
-                <div class="profile-image">
-                    <img src="profile.jpg"
-                         alt="Devaseyon profile photo">
-                </div>
-
-                <div class="profile-details">
-
-                    <div class="profile-heading">
-                        <h1>Devaseyon 👶</h1>
-
-                        <button class="follow-btn" id="followButton">
-                            Follow
-                        </button>
-
-                        <button class="message-btn"
-                                onclick="alert('Welcome to Devaseyon’s page!')">
-                            Message
-                        </button>
-                    </div>
-
-                    <div class="stats">
-                        <span><strong id="postCount">6</strong> posts</span>
-                        <span><strong id="followerCount">1.2K</strong> followers</span>
-                        <span><strong>0</strong> following</span>
-                    </div>
-
-                    <div class="bio">
-    <strong>Devaseyon 👶❤️</strong><br>
-    🎂 Date of Birth: 5 January 2026<br>
-    🕡 Birth Time: 6:36 PM<br>
-    ⚖️ Birth Weight: 3.125 kg<br>
-    🩸 Blood Group: A+<br>
-    🏥 Born at: Priya Hospital &amp; Kani Maternity<br>
-    👨‍👩‍👦 Parents: Nakkeeran &amp; Sithiya<br>
-    💕 Our little prince, our greatest happiness!
-</div>
-
-                </div>
-            </section>
-
-            <!-- STORY HIGHLIGHTS -->
-            <section class="stories">
-
-                <div class="story">
-                    <img src="photo1.jpg" alt="Moments">
-                    <p>Moments</p>
-                </div>
-
-                <div class="story">
-                    <img src="photo2.jpg" alt="Family">
-                    <p>Family</p>
-                </div>
-
-                <div class="story">
-                    <img src="profile.jpg" alt="Cute smile">
-                    <p>Cute Smile</p>
-                </div>
-
-                <div class="story">
-                    <img src="photo1.jpg" alt="Celebrations">
-                    <p>Celebrations</p>
-                </div>
-
-                <div class="story">
-                    <img src="photo2.jpg" alt="Outings">
-                    <p>Outings</p>
-                </div>
-
-                <div class="story">
-                    <img src="profile.jpg" alt="Memories">
-                    <p>Memories</p>
-                </div>
-
-            </section>
-
-            <!-- TABS -->
-            <section class="tabs">
-                <button class="tab active" data-tab="posts">
-                    ▦ POSTS
-                </button>
-
-                <button class="tab" data-tab="reels">
-                    ▷ REELS
-                </button>
-
-                <button class="tab" data-tab="tagged">
-                    ♙ TAGGED
-                </button>
-            </section>
-
-            <!-- PHOTO GALLERY -->
-            <section class="gallery" id="gallery">
-
-                <article class="post" data-category="posts">
-                    <img class="post-image"
-                         src="photo1.jpg"
-                         alt="Happy baby">
-
-                    <div class="post-info">
-                        <div class="post-actions">
-                            <button class="icon-button like-button"
-                                    aria-label="Like post">♡</button>
-                            <button class="icon-button"
-                                    aria-label="Comment">♧</button>
-                            <button class="icon-button"
-                                    aria-label="Share">➤</button>
-                        </div>
-
-                        <p class="likes">250 likes</p>
-                        <p class="caption">My little world ❤️</p>
-                    </div>
-                </article>
-
-                <article class="post" data-category="posts">
-                    <img class="post-image"
-                         src="photo2.jpg"
-                         alt="Beautiful memory">
-
-                    <div class="post-info">
-                        <div class="post-actions">
-                            <button class="icon-button like-button"
-                                    aria-label="Like post">♡</button>
-                            <button class="icon-button"
-                                    aria-label="Comment">♧</button>
-                            <button class="icon-button"
-                                    aria-label="Share">➤</button>
-                        </div>
-
-                        <p class="likes">310 likes</p>
-                        <p class="caption">Cute smile 😊</p>
-                    </div>
-                </article>
-
-                <article class="post" data-category="posts">
-                    <img class="post-image"
-                         src="profile.jpg"
-                         alt="Profile memory">
-
-                    <div class="post-info">
-                        <div class="post-actions">
-                            <button class="icon-button like-button"
-                                    aria-label="Like post">♡</button>
-                            <button class="icon-button"
-                                    aria-label="Comment">♧</button>
-                            <button class="icon-button"
-                                    aria-label="Share">➤</button>
-                        </div>
-
-                        <p class="likes">180 likes</p>
-                        <p class="caption">Precious memories 💕</p>
-                    </div>
-                </article>
-
-                <article class="post" data-category="posts">
-                    <img class="post-image"
-                         src="photo2.jpg"
-                         alt="Family memory">
-
-                    <div class="post-info">
-                        <div class="post-actions">
-                            <button class="icon-button like-button"
-                                    aria-label="Like post">♡</button>
-                            <button class="icon-button"
-                                    aria-label="Comment">♧</button>
-                            <button class="icon-button"
-                                    aria-label="Share">➤</button>
-                        </div>
-
-                        <p class="likes">215 likes</p>
-                        <p class="caption">Love and happiness 💖</p>
-                    </div>
-                </article>
-
-                <article class="post" data-category="posts">
-                    <img class="post-image"
-                         src="photo1.jpg"
-                         alt="Special day">
-
-                    <div class="post-info">
-                        <div class="post-actions">
-                            <button class="icon-button like-button"
-                                    aria-label="Like post">♡</button>
-                            <button class="icon-button"
-                                    aria-label="Comment">♧</button>
-                            <button class="icon-button"
-                                    aria-label="Share">➤</button>
-                        </div>
-
-                        <p class="likes">198 likes</p>
-                        <p class="caption">Little sunshine ☀️</p>
-                    </div>
-                </article>
-
-                <article class="post" data-category="posts">
-                    <img class="post-image"
-                         src="profile.jpg"
-                         alt="Growing up memory">
-
-                    <div class="post-info">
-                        <div class="post-actions">
-                            <button class="icon-button like-button"
-                                    aria-label="Like post">♡</button>
-                            <button class="icon-button"
-                                    aria-label="Comment">♧</button>
-                            <button class="icon-button"
-                                    aria-label="Share">➤</button>
-                        </div>
-
-                        <p class="likes">275 likes</p>
-                        <p class="caption">A lifetime of love ❤️</p>
-                    </div>
-                </article>
-
-            </section>
-
-            <footer>
-                Made with ❤️ for Devaseyon
-            </footer>
-
-        </div>
-    </main>
-</div>
-
-<script>
-// Follow and unfollow button
-const followButton = document.getElementById("followButton");
-const followerCount = document.getElementById("followerCount");
-
-let following = false;
-
-followButton.addEventListener("click", function () {
-    following = !following;
-
-    followButton.textContent = following ? "Following" : "Follow";
-
-    followButton.style.background =
-        following ? "#e8e8e8" : "#3797f0";
-
-    followButton.style.color =
-        following ? "#222" : "#fff";
-
-    followerCount.textContent =
-        following ? "1.201K" : "1.2K";
-});
-
-// Like and unlike posts
-document.querySelectorAll(".like-button").forEach(function (button) {
-    button.addEventListener("click", function () {
-        const post = button.closest(".post");
-        const likesText = post.querySelector(".likes");
-
-        let count = Number(likesText.dataset.count || 250);
-        const liked = button.classList.toggle("liked");
-
-        button.textContent = liked ? "♥" : "♡";
-
-        count = liked ? count + 1 : count - 1;
-
-        likesText.dataset.count = count;
-        likesText.textContent = count + " likes";
-    });
-});
-
-// Search captions
-document.getElementById("searchInput").addEventListener("input", function () {
-    const query = this.value.toLowerCase();
-
-    document.querySelectorAll(".post").forEach(function (post) {
-        const caption = post.querySelector(".caption")
-            .textContent.toLowerCase();
-
-        post.classList.toggle("hidden", !caption.includes(query));
-    });
-});
-
-// Switch between Posts, Reels and Tagged tabs
-document.querySelectorAll(".tab").forEach(function (tab) {
-    tab.addEventListener("click", function () {
-        document.querySelectorAll(".tab").forEach(function (item) {
-            item.classList.remove("active");
-        });
-
-        tab.classList.add("active");
-
-        const category = tab.dataset.tab;
-
-        document.querySelectorAll(".post").forEach(function (post) {
-            post.classList.toggle(
-                "hidden",
-                category !== "posts"
-            );
-        });
-
-        if (category !== "posts") {
-            alert(
-                category.toUpperCase() +
-                " section is ready for you to add content."
-            );
-        }
-    });
-});
-</script>
-
+<header>
+  <div class="logo">Devaseyon ♡</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#photos">Photos</a>
+    <a href="#memories">Memories</a>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="profile">
+    <div class="avatar-border">
+      <img class="avatar" src="profile.jpg" alt="Devaseyon profile photo">
+    </div>
+
+    <div class="bio">
+      <h1>Devaseyon 👶🏻</h1>
+      <div class="tagline">Our Little Prince ❤️</div>
+      <p>🌟 Welcome to my little world!</p>
+      <p>🎂 Date of Birth: 5 January 2026</p>
+      <p>🕡 Birth Time: 6:36 PM</p>
+      <p>⚖️ Birth Weight: 3.125 kg</p>
+      <p>🩸 Blood Group: A+</p>
+      <p>🏥 Born at Priya Hospital &amp; Kani Maternity</p>
+      <p>💗 Every picture tells a story. Every memory is precious.</p>
+      <span class="badge">A little miracle, a lifetime of love ♡</span>
+    </div>
+  </section>
+
+  <section id="photos">
+    <h2 class="section-title">OUR <span>PHOTO ALBUM</span></h2>
+    <div class="gallery">
+      <div class="photo-card">
+        <img src="profile.jpg" alt="A precious memory">
+      </div>
+      <div class="photo-card">
+        <img src="photo1.jpg" alt="Beautiful baby memory">
+      </div>
+      <div class="photo-card">
+        <img src="photo2.jpg" alt="A lovely moment">
+      </div>
+      <div class="photo-card">
+        <img src="photo1 - Copy.jpg" alt="Another special memory">
+      </div>
+      <div class="photo-card">
+        <img src="WhatsApp Image 2026-10-18 at 10.59.24 PM (1).jpeg" alt="Family memory">
+      </div>
+      <div class="photo-card">
+        <img src="WhatsApp Image 2026-10-18 at 10.59.24 PM.jpeg" alt="Precious family moment">
+      </div>
+    </div>
+  </section>
+
+  <section id="memories">
+    <h2 class="section-title">MADE WITH <span>LOVE ❤️</span></h2>
+  </section>
+</main>
+
+<footer>© 2026 Devaseyon · A little miracle, a lifetime of love ♡</footer>
 </body>
 </html>
