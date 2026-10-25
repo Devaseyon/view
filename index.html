@@ -2,113 +2,195 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Devaseyon | Little Memories</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Devaseyon | Our Family Memories</title>
 
 <style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#faf8f5;
-  color:#302b32;
+:root {
+  --pink: #c7477b;
+  --light-pink: #fff0f5;
+  --text: #342c32;
+  --muted: #786b73;
+  --white: #fff;
 }
-header{
-  position:sticky;
-  top:0;
-  background:rgba(255,255,255,.94);
-  border-bottom:1px solid #eee5e5;
-  padding:17px 6%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  z-index:5;
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fcf9fb;
+  color: var(--text);
 }
-.logo{
-  font-size:25px;
-  font-weight:bold;
-  color:#c04476;
-  letter-spacing:-1px;
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 17px 6%;
+  background: rgba(255,255,255,.96);
+  border-bottom: 1px solid #f1e4eb;
 }
-nav a{
-  text-decoration:none;
-  color:#54464e;
-  margin-left:22px;
-  font-size:14px;
+.logo { font-size: 24px; font-weight: bold; color: var(--pink); }
+nav { display: flex; flex-wrap: wrap; gap: 18px; }
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
 }
-nav a:hover{color:#d13d80}
-main{max-width:1000px;margin:45px auto;padding:0 22px}
-.profile{
-  display:flex;
-  gap:55px;
-  align-items:center;
-  justify-content:center;
-  flex-wrap:wrap;
-  padding:20px 0 38px;
+nav a:hover, nav a.active { color: var(--pink); }
+main { max-width: 1050px; margin: auto; padding: 30px 20px 60px; }
+.page { display: none; }
+.page.active { display: block; }
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 38px;
+  flex-wrap: wrap;
+  padding: 30px 0 45px;
 }
-.avatar-border{
-  width:190px;height:190px;border-radius:50%;
-  padding:5px;
-  background:linear-gradient(135deg,#f9ce34,#ee2a7b,#6228d7);
-  box-shadow:0 8px 28px #c0447620;
+.avatar-ring {
+  width: 185px;
+  height: 185px;
+  padding: 5px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#ffce55,#f24c91,#7545dd);
+  box-shadow: 0 8px 28px #c7477b22;
 }
-.avatar{
-  width:100%;height:100%;border-radius:50%;
-  object-fit:cover;border:4px solid #fff;
-  display:block;background:#f2e8ed;
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 4px solid white;
+  border-radius: 50%;
 }
-.bio{max-width:440px}
-.bio h1{font-size:30px;margin:0 0 12px}
-.tagline{color:#bd477b;font-weight:bold;font-size:16px}
-.bio p{line-height:1.8;color:#6f6269;margin:10px 0}
-.badge{
-  display:inline-block;
-  padding:8px 13px;
-  background:#fff0f5;
-  border-radius:20px;
-  color:#b13c71;
-  font-size:13px;
-  margin-top:8px;
+.bio { max-width: 480px; }
+h1 { margin: 0 0 10px; font-size: 30px; }
+.tagline { color: var(--pink); font-weight: bold; }
+.bio p { line-height: 1.7; color: var(--muted); margin: 8px 0; }
+.section-title { text-align: center; margin: 20px 0 28px; }
+.section-title span { color: var(--pink); }
+.intro {
+  text-align: center;
+  color: var(--muted);
+  line-height: 1.8;
+  margin: -12px auto 30px;
+  max-width: 600px;
 }
-.section-title{
-  text-align:center;
-  margin:25px 0;
-  font-size:19px;
-  letter-spacing:2px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 15px;
 }
-.section-title span{color:#bd477b}
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:14px;
+.card {
+  overflow: hidden;
+  border-radius: 14px;
+  background: white;
+  box-shadow: 0 5px 20px #4d20300c;
+  border: 1px solid #f0e7ec;
 }
-.photo-card{
-  position:relative;
-  overflow:hidden;
-  border-radius:15px;
-  aspect-ratio:1/1;
-  background:#eee5e8;
-  box-shadow:0 5px 18px #5d344010;
+.media {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: block;
+  object-fit: cover;
+  background: #f2e8ed;
+  cursor: pointer;
 }
-.photo-card img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  transition:transform .4s;
+video.media { cursor: default; }
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
 }
-.photo-card:hover img{transform:scale(1.06)}
-footer{
-  text-align:center;padding:35px 15px;
-  color:#9a858e;font-size:13px;
+.caption { font-size: 13px; color: var(--muted); }
+.button {
+  display: inline-block;
+  border: 0;
+  border-radius: 20px;
+  padding: 9px 13px;
+  background: var(--pink);
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 12px;
 }
-@media(max-width:600px){
-  header{padding:15px;flex-wrap:wrap;gap:12px}
-  .logo{font-size:22px}
-  nav a{margin-left:12px;font-size:13px}
-  main{margin:25px auto;padding:0 12px}
-  .profile{gap:22px;text-align:center}
-  .avatar-border{width:145px;height:145px}
-  .bio h1{font-size:25px}
-  .gallery{gap:6px}
-  .photo-card{border-radius:8px}
+.button.secondary { background: var(--light-pink); color: var(--pink); }
+.person-card {
+  text-align: center;
+  max-width: 650px;
+  margin: auto;
+  padding: 28px;
+  background: white;
+  border: 1px solid #f0e7ec;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px #4d20300c;
+}
+.person-photo {
+  width: 190px;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid var(--light-pink);
+}
+.person-card p { color: var(--muted); line-height: 1.8; }
+.empty-note {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  color: var(--muted);
+  grid-column: 1 / -1;
+}
+footer { text-align: center; padding: 25px; color: #9a858e; font-size: 13px; }
+
+/* Full-screen photo viewer */
+#viewer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(15,10,20,.95);
+  align-items: center;
+  justify-content: center;
+  padding: 55px;
+}
+#viewer.open { display: flex; }
+#viewer img {
+  max-width: 90%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 10px;
+}
+.close {
+  position: absolute;
+  right: 22px;
+  top: 15px;
+  color: white;
+  font-size: 35px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+@media(max-width:650px) {
+  header { padding: 15px; }
+  nav { gap: 12px; }
+  nav a { font-size: 13px; }
+  main { padding: 20px 10px 40px; }
+  .profile { gap: 20px; text-align: center; }
+  .avatar-ring { width: 145px; height: 145px; }
+  h1 { font-size: 25px; }
+  .grid { gap: 7px; }
+  .card { border-radius: 9px; }
+  .card-actions { flex-wrap: wrap; padding: 7px; }
+  .button { padding: 8px 10px; }
+  #viewer { padding: 35px 12px; }
 }
 </style>
 </head>
@@ -117,61 +199,181 @@ footer{
 <header>
   <div class="logo">Devaseyon ♡</div>
   <nav>
-    <a href="#home">Home</a>
-    <a href="#photos">Photos</a>
-    <a href="#memories">Memories</a>
+    <a href="#home" data-page="home">Home</a>
+    <a href="#photos" data-page="photos">Photos</a>
+    <a href="#videos" data-page="videos">Videos</a>
+    <a href="#appa" data-page="appa">Appa</a>
+    <a href="#amma" data-page="amma">Amma</a>
+    <a href="#memories" data-page="memories">Memories</a>
   </nav>
 </header>
 
-<main id="home">
-  <section class="profile">
-    <div class="avatar-border">
-      <img class="avatar" src="profile.jpg" alt="Devaseyon profile photo">
+<main>
+  <!-- HOME -->
+  <section class="page active" id="home">
+    <div class="profile">
+      <div class="avatar-ring">
+        <img class="avatar" src="profile.jpg" alt="Devaseyon profile photo">
+      </div>
+      <div class="bio">
+        <h1>Devaseyon 👶🏻</h1>
+        <div class="tagline">Our Little Prince ❤️</div>
+        <p>🌟 Welcome to my little world!</p>
+        <p>🎂 Date of Birth: 5 January 2026</p>
+        <p>🕡 Birth Time: 6:36 PM</p>
+        <p>⚖️ Birth Weight: 3.125 kg</p>
+        <p>🩸 Blood Group: A+</p>
+        <p>🏥 Born at Priya Hospital &amp; Kani Maternity</p>
+        <p>💗 A little miracle, a lifetime of love.</p>
+      </div>
     </div>
-
-    <div class="bio">
-      <h1>Devaseyon 👶🏻</h1>
-      <div class="tagline">Our Little Prince ❤️</div>
-      <p>🌟 Welcome to my little world!</p>
-      <p>🎂 Date of Birth: 5 January 2026</p>
-      <p>🕡 Birth Time: 6:36 PM</p>
-      <p>⚖️ Birth Weight: 3.125 kg</p>
-      <p>🩸 Blood Group: A+</p>
-      <p>🏥 Born at Priya Hospital &amp; Kani Maternity</p>
-      <p>💗 Every picture tells a story. Every memory is precious.</p>
-      <span class="badge">A little miracle, a lifetime of love ♡</span>
-    </div>
-  </section>
-
-  <section id="photos">
-    <h2 class="section-title">OUR <span>PHOTO ALBUM</span></h2>
-    <div class="gallery">
-      <div class="photo-card">
-        <img src="profile.jpg" alt="A precious memory">
+    <h2 class="section-title">Precious <span>Family Memories</span> ❤️</h2>
+    <p class="intro">A special little corner to keep our favourite photos, videos, and family moments forever.</p>
+    <div class="grid">
+      <div class="card">
+        <img class="media" src="profile.jpg" alt="Devaseyon" onclick="openViewer(this)">
+        <div class="card-actions"><span class="caption">Our Little Prince</span><a class="button secondary" href="profile.jpg" download>Download</a></div>
       </div>
-      <div class="photo-card">
-        <img src="photo1.jpg" alt="Beautiful baby memory">
+      <div class="card">
+        <img class="media" src="photo1.jpg" alt="Baby memory" onclick="openViewer(this)">
+        <div class="card-actions"><span class="caption">Little Moments</span><a class="button secondary" href="photo1.jpg" download>Download</a></div>
       </div>
-      <div class="photo-card">
-        <img src="photo2.jpg" alt="A lovely moment">
-      </div>
-      <div class="photo-card">
-        <img src="photo1 - Copy.jpg" alt="Another special memory">
-      </div>
-      <div class="photo-card">
-        <img src="WhatsApp Image 2026-10-18 at 10.59.24 PM (1).jpeg" alt="Family memory">
-      </div>
-      <div class="photo-card">
-        <img src="WhatsApp Image 2026-10-18 at 10.59.24 PM.jpeg" alt="Precious family moment">
+      <div class="card">
+        <img class="media" src="photo2.jpg" alt="Family memory" onclick="openViewer(this)">
+        <div class="card-actions"><span class="caption">Beautiful Memories</span><a class="button secondary" href="photo2.jpg" download>Download</a></div>
       </div>
     </div>
   </section>
 
-  <section id="memories">
-    <h2 class="section-title">MADE WITH <span>LOVE ❤️</span></h2>
+  <!-- PHOTOS -->
+  <section class="page" id="photos">
+    <h2 class="section-title">Our <span>Photo Album</span> 📸</h2>
+    <p class="intro">Click a photo to view it larger. Use Download to save a copy.</p>
+    <div class="grid" id="photoGrid"></div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section class="page" id="videos">
+    <h2 class="section-title">Our <span>Videos</span> 🎥</h2>
+    <p class="intro">Baby smiles, first steps, celebrations, and special moments.</p>
+    <div class="grid" id="videoGrid">
+      <div class="empty-note">Add your video files to this GitHub repository, then update the video filenames in the code below.</div>
+    </div>
+  </section>
+
+  <!-- APPA -->
+  <section class="page" id="appa">
+    <h2 class="section-title">My <span>Appa</span> 👨❤️</h2>
+    <div class="person-card">
+      <img class="person-photo" src="appa.jpg" alt="Appa photo">
+      <h2>My Appa</h2>
+      <p>My first hero, my protector, and a lifetime of love. ❤️</p>
+      <a class="button secondary" href="appa.jpg" download>Download Photo</a>
+    </div>
+  </section>
+
+  <!-- AMMA -->
+  <section class="page" id="amma">
+    <h2 class="section-title">My <span>Amma</span> 👩❤️</h2>
+    <div class="person-card">
+      <img class="person-photo" src="amma.jpg" alt="Amma photo">
+      <h2>My Amma</h2>
+      <p>My first home, my comfort, and my endless love. ❤️</p>
+      <a class="button secondary" href="amma.jpg" download>Download Photo</a>
+    </div>
+  </section>
+
+  <!-- MEMORIES -->
+  <section class="page" id="memories">
+    <h2 class="section-title">Made with <span>Love</span> 💗</h2>
+    <p class="intro">Every photograph holds a story. Every video brings a moment back to life. These memories are our family treasure.</p>
+    <div class="person-card">
+      <h2>Devaseyon's Memory Book</h2>
+      <p>For all the little moments that become our biggest memories.</p>
+    </div>
   </section>
 </main>
 
 <footer>© 2026 Devaseyon · A little miracle, a lifetime of love ♡</footer>
+
+<div id="viewer" onclick="if(event.target===this)closeViewer()">
+  <button class="close" onclick="closeViewer()" aria-label="Close viewer">&times;</button>
+  <img id="viewerImage" src="" alt="Expanded family memory">
+</div>
+
+<script>
+// Update these names to match the exact filenames in your repository.
+const photos = [
+  {file:"profile.jpg", caption:"Devaseyon"},
+  {file:"photo1.jpg", caption:"Little Moments"},
+  {file:"photo2.jpg", caption:"Beautiful Memories"},
+  {file:"photo1 - Copy.jpg", caption:"Another Special Memory"}
+];
+
+const photoGrid = document.getElementById("photoGrid");
+photos.forEach(photo => {
+  const card = document.createElement("div");
+  card.className = "card";
+
+  const img = document.createElement("img");
+  img.className = "media";
+  img.src = photo.file;
+  img.alt = photo.caption;
+  img.loading = "lazy";
+  img.onclick = () => openViewer(img);
+  img.onerror = () => { card.style.display = "none"; };
+
+  const actions = document.createElement("div");
+  actions.className = "card-actions";
+
+  const caption = document.createElement("span");
+  caption.className = "caption";
+  caption.textContent = photo.caption;
+
+  const download = document.createElement("a");
+  download.className = "button secondary";
+  download.href = photo.file;
+  download.download = "";
+  download.textContent = "Download";
+
+  actions.append(caption, download);
+  card.append(img, actions);
+  photoGrid.append(card);
+});
+
+function openViewer(img) {
+  document.getElementById("viewerImage").src = img.src;
+  document.getElementById("viewer").classList.add("open");
+}
+function closeViewer() {
+  document.getElementById("viewer").classList.remove("open");
+}
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeViewer();
+});
+
+// Simple page navigation
+function showPage(pageId) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.toggle("active", page.id === pageId);
+  });
+  document.querySelectorAll("nav a").forEach(link => {
+    link.classList.toggle("active", link.dataset.page === pageId);
+  });
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+document.querySelectorAll("nav a").forEach(link => {
+  link.addEventListener("click", event => {
+    event.preventDefault();
+    const pageId = link.dataset.page;
+    history.replaceState(null, "", "#" + pageId);
+    showPage(pageId);
+  });
+});
+const initialPage = location.hash.slice(1);
+if (document.getElementById(initialPage)?.classList.contains("page")) {
+  showPage(initialPage);
+}
+</script>
 </body>
 </html>
